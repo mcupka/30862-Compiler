@@ -1,0 +1,3 @@
+class NullArgObj extends ArgObj {
+    
+}
