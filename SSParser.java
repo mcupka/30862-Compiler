@@ -2,7 +2,7 @@ public class SSParser extends Parser {
 
 
     public ArgObj parse(String[] tokens) {
-        SSArgObj args = new SIArgObj();
+        SSArgObj args = new SSArgObj();
         String parsedstring1 = "";
         String parsedstring2 = "";
 
