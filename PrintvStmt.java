@@ -1,25 +1,23 @@
-import java.nio.ByteBuffer;
+class PrintvStmt extends Stmt {
 
-class RetStmt extends Stmt {
-
-    public RetStmt() {
-        parser = new NullParser();
+    public PrintvStmt() {
+        parser = new SParser();
     }
 
 
     public byte [] genCode(String[] tokens) {
 
         ArgObj args = parser.parse(tokens);
-        NullArgObj nargs = (NullArgObj) args;
+        SArgObj nargs = (SArgObj) args;
 
-        //ret will only occur once at the end of the program. Always does push 0, popa, ret
+        //printv does: pushi (int from symbol table), pushvi, printi
         byte [] codebytes = new byte [7];
 
 
         //pushi
         codebytes[0] = (byte) 70;
 
-        //convert 0 into bytes
+        //convert (valuefromsymboltable) into bytes
         ByteBuffer b = ByteBuffer.allocate(4);
         b.putInt(0);
         byte[] intbytes = b.array();
@@ -29,13 +27,7 @@ class RetStmt extends Stmt {
         codebytes[3] = intbytes[1];
         codebytes[4] = intbytes[0];
 
-
-        //popa
-        codebytes[5] = (byte) 77;
-
-        //ret
-        codebytes[6] = (byte) 48;
-
         return codebytes;
     }
+
 }

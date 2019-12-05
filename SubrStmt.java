@@ -1,3 +1,5 @@
+import java.nio.ByteBuffer;
+
 
 public class SubrStmt extends Stmt {
 
@@ -32,28 +34,28 @@ public class SubrStmt extends Stmt {
         codebytes[5] = (byte) 70;
 
         //convert 17 into bytes
-        ByteBuffer b = ByteBuffer.allocate(4);
-        b.putInt(17);
-        byte[] intbytes = b.array();
+        ByteBuffer c = ByteBuffer.allocate(4);
+        c.putInt(17);
+        byte[] intbytes2 = c.array();
 
-        codebytes[6] = intbytes[3];
-        codebytes[7] = intbytes[2];
-        codebytes[8] = intbytes[1];
-        codebytes[9] = intbytes[0];
+        codebytes[6] = intbytes2[3];
+        codebytes[7] = intbytes2[2];
+        codebytes[8] = intbytes2[1];
+        codebytes[9] = intbytes2[0];
 
 
         //pushi
         codebytes[10] = (byte) 70;
 
         //convert 1 into bytes
-        ByteBuffer b = ByteBuffer.allocate(4);
-        b.putInt(1);
-        byte[] intbytes = b.array();
+        ByteBuffer d = ByteBuffer.allocate(4);
+        d.putInt(1);
+        byte[] intbytes3 = d.array();
 
-        codebytes[11] = intbytes[3];
-        codebytes[12] = intbytes[2];
-        codebytes[13] = intbytes[1];
-        codebytes[14] = intbytes[0];
+        codebytes[11] = intbytes3[3];
+        codebytes[12] = intbytes3[2];
+        codebytes[13] = intbytes3[1];
+        codebytes[14] = intbytes3[0];
 
 
         //call
