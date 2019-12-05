@@ -17,7 +17,7 @@ public class Main {
 
         try {
           FileReader freaderSymbol = new FileReader(args[0]);
-          BufferedReader buffreaderSymbol = new FileReader(args[0]);
+          BufferedReader buffreader = new BufferedReader(freaderSymbol);
 
           String line = buffreader.readLine();
           String[] tokens = null;
