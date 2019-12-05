@@ -79,7 +79,7 @@ public class Main {
 
             Stmt stmt;
             byte [] data;
-            if (tokens[0].matches("decl|ret|printi|subr")) {
+            if (tokens[0].matches("decl|ret|printi|subr|pushv|popv|printv")) {
 
                 stmt = StatementFactory.getStmt(tokens[0]);
                 data = stmt.genCode(tokens);
