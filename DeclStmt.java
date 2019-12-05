@@ -10,7 +10,7 @@ class DeclStmt extends Stmt {
     public byte [] genCode(String[] tokens) {
 
         ArgObj args = parser.parse(tokens);
-        NullArgsObj nargs = (NullArgsObj) nargs;
+        NullArgObj nargs = (NullArgObj) args;
 
         //pushv does: pushi val, pushv
         byte [] codebytes = new byte [5];
@@ -20,7 +20,7 @@ class DeclStmt extends Stmt {
 
         //convert 0 into bytes
         ByteBuffer b = ByteBuffer.allocate(4);
-        b.putInt(StatementFactory.variables.get(sargs.str));
+        b.putInt(0);
         byte[] intbytes = b.array();
 
         codebytes[1] = intbytes[3];
