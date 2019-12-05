@@ -10,7 +10,46 @@ import java.nio.charset.StandardCharsets;
 
 
 public class Main {
+
+
+
     public static void main(String[] args) {
+
+        try {
+          FileReader freaderSymbol = new FileReader(args[0]);
+          BufferedReader buffreaderSymbol = new FileReader(args[0]);
+
+          String line = buffreader.readLine();
+          String[] tokens = null;
+          Integer count = 0;
+
+          while(line != null)
+          {
+            line = line.trim( );
+            line = line.replaceAll(",", " , ");
+            line = line.replaceAll("\\s+", " ");
+            tokens = line.split("\\s");
+
+            Stmt stmt;
+            byte [] data;
+
+            if (tokens[0].matches("decl"))
+            {
+              StatementFactory.variables.put(tokens[1], count);
+              count++;
+            }
+
+            line = buffreader.readLine();
+
+          }
+
+          buffreader.close();
+
+        }
+
+        catch (IOException e) {System.out.println("Error Opening Input File!");}
+        catch (ArrayIndexOutOfBoundsException e) {System.out.println("Not enough arguments!");}
+        catch (Exception e) {System.out.println("Exception Occured"); System.out.println(e);}
 
         try {
         FileReader freader = new FileReader(args[0]);
@@ -20,7 +59,7 @@ public class Main {
         Path outpath = Paths.get(args[1]);
 
         //First delete contents of the output file if it exists
-        BufferedWriter writer = Files.newBufferedWriter(outpath); 
+        BufferedWriter writer = Files.newBufferedWriter(outpath);
         writer.write("");
         writer.flush();
 
@@ -50,7 +89,7 @@ public class Main {
 
             }
 
-    
+
             //Get the next line
             line = buffreader.readLine();
         }

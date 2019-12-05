@@ -9,6 +9,7 @@ public class StatementFactory {
     private static String[] stmts = {"subr", "printi", "ret"};
 
     private static Map<String, Stmt> statements = new HashMap<String, Stmt>();
+    private static Map<String, Integer> variables = new HashMap<String, Integer>();
 
     static{
         for (int i = 0; i < stmtClasses.length; i++) {
@@ -25,7 +26,7 @@ public class StatementFactory {
                 System.out.println("Error creating string<->statement map");
                 System.out.println(e);
             }
-            
+
         }
     }
 
