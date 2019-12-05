@@ -5,8 +5,8 @@ import java.util.HashMap;
 
 public class StatementFactory {
 
-    private static String[] stmtClasses = {"SubrStmt", "PrintiStmt", "RetStmt"};
-    private static String[] stmts = {"subr", "printi", "ret"};
+    private static String[] stmtClasses = {"SubrStmt", "PrintiStmt", "RetStmt", "DeclStmt", "PrintvStmt", "PushvStmt", "PopvStmt", "PushiStmt"};
+    private static String[] stmts = {"subr", "printi", "ret", "decl", "printv", "pushv", "popv", "pushi"};
 
     private static Map<String, Stmt> statements = new HashMap<String, Stmt>();
     public static Map<String, Integer> variables = new HashMap<String, Integer>();
