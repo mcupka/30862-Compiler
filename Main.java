@@ -15,6 +15,73 @@ public class Main {
 
     public static void main(String[] args) {
 
+      try {
+        FileReader freaderSymbol = new FileReader(args[0]);
+        BufferedReader buffreader = new BufferedReader(freaderSymbol);
+
+        String line = buffreader.readLine();
+        String[] tokens = null;
+        Integer byte_count = 0;
+
+        while(line != null)
+        {
+          line = line.trim( );
+          line = line.replaceAll(",", " , ");
+          line = line.replaceAll("\\s+", " ");
+          tokens = line.split("\\s");
+
+
+          if (tokens[0].matches("lab")) {
+            //if the statement is a label statement, place the current byte_count in the symbol table entry for that label
+            StatementFactory.labels.put(tokens[1], byte_count);
+          }
+
+          else if (tokens[0].matches("decl|ret|printi|subr|pushv|popv|printv|pushi")) {
+            //if statement is any valid statement but lab, increment the byte_count
+            byte_count += StatementFactory.bytes_per_stmt.get(tokens[0]);
+          }
+
+          line = buffreader.readLine();
+
+        }
+
+        buffreader.close();
+
+      }
+
+      catch (Exception e) {System.out.println("Exception Occured in label symbol scan"); System.out.println(e);}
+
+      try {
+        FileReader freaderSymbol = new FileReader(args[0]);
+        BufferedReader buffreader = new BufferedReader(freaderSymbol);
+
+        String line = buffreader.readLine();
+        String[] tokens = null;
+        Integer count = 0;
+
+        while(line != null)
+        {
+          line = line.trim( );
+          line = line.replaceAll(",", " , ");
+          line = line.replaceAll("\\s+", " ");
+          tokens = line.split("\\s");
+
+          if (tokens[0].matches("decl"))
+          {
+            StatementFactory.variables.put(tokens[1], count);
+            count++;
+          }
+
+          line = buffreader.readLine();
+
+        }
+
+        buffreader.close();
+
+      }
+
+      catch (Exception e) {System.out.println("Exception Occured in variable symbol scan"); System.out.println(e);}
+
         try {
           FileReader freaderSymbol = new FileReader(args[0]);
           BufferedReader buffreader = new BufferedReader(freaderSymbol);

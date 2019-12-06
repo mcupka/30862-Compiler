@@ -11,6 +11,12 @@ public class StatementFactory {
     private static Map<String, Stmt> statements = new HashMap<String, Stmt>();
     public static Map<String, Integer> variables = new HashMap<String, Integer>();
 
+
+    //Used to make hashmap of command<->(# of bytes it generates) used for the label symbol table
+    private static Integer[] bytes_generated = {17 /*subr*/, 6 /*printi*/ , 7 /*ret*/, 5 /*decl*/, 7 /*printv*/, 6 /*pushv*/, 6 /*popv*/, 5 /*pushi*/};
+    public static Map<String, Integer> bytes_per_stmt = new HashMap<String, Integer>();
+    public static Map<String, Integer> labels = new HashMap<String, Integer>();
+
     static{
         for (int i = 0; i < stmtClasses.length; i++) {
             Class<?> cls = null;
@@ -21,6 +27,9 @@ public class StatementFactory {
             constructor = cls.getConstructor();
             Stmt stmt = (Stmt) constructor.newInstance();
             statements.put(stmts[i], stmt);
+
+            bytes_per_stmt.put(stmts[i], bytes_generated[i]);
+
             }
             catch (Exception e) {
                 System.out.println("Error creating string<->statement map");
