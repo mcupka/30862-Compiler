@@ -31,9 +31,9 @@ public class PeekStmt extends Stmt {
 
       codebytes[5] = (byte) 70;
 
-      ByteBuffer b = ByteBuffer.allocate(4);
-      b.putInt(sargs.i);
-      byte[] intbytes2 = b.array();
+      ByteBuffer b2 = ByteBuffer.allocate(4);
+      b2.putInt(sargs.i);
+      byte[] intbytes2 = b2.array();
 
       codebytes[6] = intbytes2[3];
       codebytes[7] = intbytes2[2];
