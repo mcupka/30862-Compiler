@@ -82,7 +82,7 @@ public class Main {
 
       catch (Exception e) {System.out.println("Exception Occured in variable symbol scan"); System.out.println(e);}
 
-        try {
+      try {
         FileReader freader = new FileReader(args[0]);
         BufferedReader buffreader = new BufferedReader(freader);
 
@@ -100,7 +100,6 @@ public class Main {
         String[] tokens = null;
 
         while (line != null) {
-            System.out.println(line);
 
             line = line.trim( );
             line = line.replaceAll(",", " , ");
