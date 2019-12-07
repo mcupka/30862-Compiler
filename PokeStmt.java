@@ -36,10 +36,10 @@ public class PokeStmt extends Stmt {
       b.putInt(sargs.i);
       byte[] intbytes2 = b.array();
 
-      codebytes[6] = intbytes2[3]
-      codebytes[7] = intbytes2[2]
-      codebytes[8] = intbytes2[1]
-      codebytes[9] = intbytes2[0]
+      codebytes[6] = intbytes2[3];
+      codebytes[7] = intbytes2[2];
+      codebytes[8] = intbytes2[1];
+      codebytes[9] = intbytes2[0];
 
 
       //poke
