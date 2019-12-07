@@ -3,17 +3,17 @@ import java.nio.ByteBuffer;
 public class PokeStmt extends Stmt {
 
   public PokeStmt() {
-      parser = new SParser();
+      parser = new SIParser();
   }
 
 
   public byte [] genCode(String[] tokens) {
 
       ArgObj args = parser.parse(tokens);
-      SArgObj sargs = (SArgObj) args;
+      SIArgObj sargs = (SIArgObj) args;
 
-      //printv does: pushi (int from symbol table), popv
-      byte [] codebytes = new byte [6];
+      // pushi (int from symbol table)
+      byte [] codebytes = new byte [11];
 
 
       //pushi
@@ -30,8 +30,20 @@ public class PokeStmt extends Stmt {
       codebytes[4] = intbytes[0];
 
 
+      codebytes[5] = (byte) 70;
+
+      ByteBuffer b = ByteBuffer.allocate(4);
+      b.putInt(sargs.i);
+      byte[] intbytes2 = b.array();
+
+      codebytes[6] = intbytes2[3]
+      codebytes[7] = intbytes2[2]
+      codebytes[8] = intbytes2[1]
+      codebytes[9] = intbytes2[0]
+
+
       //poke
-      codebytes[5] = (byte) 90;
+      codebytes[10] = (byte) 90;
 
 
       return codebytes;
