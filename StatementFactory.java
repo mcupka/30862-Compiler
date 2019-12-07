@@ -6,9 +6,9 @@ import java.util.HashMap;
 public class StatementFactory {
 
     private static String[] stmtClasses = {"SubrStmt", "PrintiStmt", "RetStmt", "DeclStmt", "PrintvStmt", "PushvStmt", "PopvStmt", "PushiStmt", "AddStmt",
-    "SubStmt", "MulStmt", "DivStmt", "SwpStmt"};
+    "SubStmt", "MulStmt", "DivStmt", "SwpStmt", "PopmStmt", "CmpeStmt", "CmpltStmt", "CmpgtStmt", "JmpStmt", "JmpcStmt"};
     private static String[] stmts = {"subr", "printi", "ret", "decl", "printv", "pushv", "popv", "pushi", "add",
-     "sub", "mul", "div", "swp"};
+     "sub", "mul", "div", "swp", "popm", "cmpe", "cmplt", "cmpgt", "jmp", "jmpc"};
 
     private static Map<String, Stmt> statements = new HashMap<String, Stmt>();
     public static Map<String, Integer> variables = new HashMap<String, Integer>();
@@ -16,7 +16,7 @@ public class StatementFactory {
 
     //Used to make hashmap of command<->(# of bytes it generates) used for the label symbol table
     private static Integer[] bytes_generated = {17 /*subr*/, 6 /*printi*/ , 7 /*ret*/, 5 /*decl*/, 7 /*printv*/, 6 /*pushv*/, 6 /*popv*/, 5 /*pushi*/, 1 /*add*/,
-    1 /*sub*/, 1 /*mul*/, 1 /*div*/, 1 /*swp*/};
+    1 /*sub*/, 1 /*mul*/, 1 /*div*/, 1 /*swp*/, 6 /*popm*/, 1 /*cmpe*/, 1/*cmplt*/, 1/*cmpgt*/, 6/*jmp*/, 6/*jmpc*/};
 
     public static Map<String, Integer> bytes_per_stmt = new HashMap<String, Integer>();
     public static Map<String, Integer> labels = new HashMap<String, Integer>();

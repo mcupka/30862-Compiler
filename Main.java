@@ -36,7 +36,7 @@ public class Main {
             StatementFactory.labels.put(tokens[1], byte_count);
           }
 
-          else if (tokens[0].matches("decl|ret|printi|subr|pushv|popv|printv|pushi|add|sub|mul|div|swp")) {
+          else if (tokens[0].matches("decl|ret|printi|subr|pushv|popv|printv|pushi|add|sub|mul|div|swp|popm|cmpe|cmplt|cmpgt|jmp|jmpc")) {
             //if statement is any valid statement but lab, increment the byte_count
             byte_count += StatementFactory.bytes_per_stmt.get(tokens[0]);
           }
@@ -110,7 +110,7 @@ public class Main {
 
             Stmt stmt;
             byte [] data;
-            if (tokens[0].matches("decl|ret|printi|subr|pushv|popv|printv|pushi|add|sub|mul|div|swp")) {
+            if (tokens[0].matches("decl|ret|printi|subr|pushv|popv|printv|pushi|add|sub|mul|div|swp|popm|cmpe|cmplt|cmpgt|jmp|jmpc")) {
 
                 stmt = StatementFactory.getStmt(tokens[0]);
                 data = stmt.genCode(tokens);

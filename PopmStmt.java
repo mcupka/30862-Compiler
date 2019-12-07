@@ -1,27 +1,26 @@
 import java.nio.ByteBuffer;
 
-public class PopvStmt extends Stmt {
+public class PopmStmt extends Stmt {
 
-  public PopvStmt() {
-      parser = new SParser();
+  public PopmStmt() {
+      parser = new IParser();
   }
 
 
   public byte [] genCode(String[] tokens) {
 
       ArgObj args = parser.parse(tokens);
-      SArgObj sargs = (SArgObj) args;
+      IArgObj iargs = (IArgObj) args;
 
-      //printv does: pushi (int from symbol table), popv
+      //printv does: pushi val, popm
       byte [] codebytes = new byte [6];
-
 
       //pushi
       codebytes[0] = (byte) 70;
 
-      //convert (valuefromsymboltable) into bytes
+      //convert int into bytes
       ByteBuffer b = ByteBuffer.allocate(4);
-      b.putInt(StatementFactory.variables.get(sargs.str));
+      b.putInt(iargs.i);
       byte[] intbytes = b.array();
 
       codebytes[1] = intbytes[3];
@@ -30,9 +29,8 @@ public class PopvStmt extends Stmt {
       codebytes[4] = intbytes[0];
 
 
-      //popv
-      codebytes[5] = (byte) 80;
-
+      //popm
+      codebytes[5] = (byte) 76;
 
       return codebytes;
   }

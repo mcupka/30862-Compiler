@@ -1,8 +1,8 @@
 import java.nio.ByteBuffer;
 
-public class PopvStmt extends Stmt {
+public class JmpcStmt extends Stmt {
 
-  public PopvStmt() {
+  public JmpcStmt() {
       parser = new SParser();
   }
 
@@ -12,7 +12,7 @@ public class PopvStmt extends Stmt {
       ArgObj args = parser.parse(tokens);
       SArgObj sargs = (SArgObj) args;
 
-      //printv does: pushi (int from symbol table), popv
+      //jmpc does: pushi (int from symbol table), jmpc
       byte [] codebytes = new byte [6];
 
 
@@ -21,7 +21,7 @@ public class PopvStmt extends Stmt {
 
       //convert (valuefromsymboltable) into bytes
       ByteBuffer b = ByteBuffer.allocate(4);
-      b.putInt(StatementFactory.variables.get(sargs.str));
+      b.putInt(StatementFactory.labels.get(sargs.str));
       byte[] intbytes = b.array();
 
       codebytes[1] = intbytes[3];
@@ -30,8 +30,8 @@ public class PopvStmt extends Stmt {
       codebytes[4] = intbytes[0];
 
 
-      //popv
-      codebytes[5] = (byte) 80;
+      //jmpc
+      codebytes[5] = (byte) 40;
 
 
       return codebytes;
