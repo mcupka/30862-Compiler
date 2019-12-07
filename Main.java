@@ -36,7 +36,7 @@ public class Main {
             StatementFactory.labels.put(tokens[1], byte_count);
           }
 
-          else if (tokens[0].matches("decl|ret|printi|subr|pushv|popv|printv|pushi")) {
+          else if (tokens[0].matches("decl|ret|printi|subr|pushv|popv|printv|pushi|add|sub|mul|div|swp")) {
             //if statement is any valid statement but lab, increment the byte_count
             byte_count += StatementFactory.bytes_per_stmt.get(tokens[0]);
           }
@@ -83,42 +83,6 @@ public class Main {
       catch (Exception e) {System.out.println("Exception Occured in variable symbol scan"); System.out.println(e);}
 
         try {
-          FileReader freaderSymbol = new FileReader(args[0]);
-          BufferedReader buffreader = new BufferedReader(freaderSymbol);
-
-          String line = buffreader.readLine();
-          String[] tokens = null;
-          Integer count = 0;
-
-          while(line != null)
-          {
-            line = line.trim( );
-            line = line.replaceAll(",", " , ");
-            line = line.replaceAll("\\s+", " ");
-            tokens = line.split("\\s");
-
-            Stmt stmt;
-            byte [] data;
-
-            if (tokens[0].matches("decl"))
-            {
-              StatementFactory.variables.put(tokens[1], count);
-              count++;
-            }
-
-            line = buffreader.readLine();
-
-          }
-
-          buffreader.close();
-
-        }
-
-        catch (IOException e) {System.out.println("Error Opening Input File!");}
-        catch (ArrayIndexOutOfBoundsException e) {System.out.println("Not enough arguments!");}
-        catch (Exception e) {System.out.println("Exception Occured"); System.out.println(e);}
-
-        try {
         FileReader freader = new FileReader(args[0]);
         BufferedReader buffreader = new BufferedReader(freader);
 
@@ -146,7 +110,7 @@ public class Main {
 
             Stmt stmt;
             byte [] data;
-            if (tokens[0].matches("decl|ret|printi|subr|pushv|popv|printv|pushi")) {
+            if (tokens[0].matches("decl|ret|printi|subr|pushv|popv|printv|pushi|add|sub|mul|div|swp")) {
 
                 stmt = StatementFactory.getStmt(tokens[0]);
                 data = stmt.genCode(tokens);
